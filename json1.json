@@ -1,0 +1,16 @@
+{
+    "dir1": {
+        "dir2": {
+            "file1": "continut1",
+            "file2": "continut2"
+            },
+        "file3": "continut3"},
+    "file4": "continut4",
+    "dir4": {
+        "dir5": {
+            "file6": "continut1",
+            "file7": "continut2"
+            }
+        },
+    "dir3": {}
+}

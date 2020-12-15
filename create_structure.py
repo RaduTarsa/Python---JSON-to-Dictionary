@@ -45,6 +45,20 @@ def check_third_argv():
         return True
     return False
 
+def tree_print(path, count):
+    for dirname, dirnames, filenames in os.walk(path):      
+        for subdirname in dirnames:
+            for i in range(count):
+                print("---", end = "")
+            print(subdirname)
+            tree_print(os.path.join(dirname, subdirname), count + 1)
+        for filename in filenames:
+            for i in range(count):
+                print("---", end = "")
+            print(filename)
+        break
+        
+
 def main():
     if check_argv_number() and check_second_argv() and check_third_argv():
         root_dir = sys.argv[1]
@@ -56,6 +70,9 @@ def main():
             return False
         f.close()
         json_to_something(json_file, root_dir)
+
+        print(os.path.basename(root_dir))
+        tree_print(root_dir, 1)
     else:
         print("You have to pass in 3 arguments:")
         print("- name of this script;")
@@ -64,18 +81,6 @@ def main():
 
 main()
 
-
-# some JSON:
-# x = '{"dir1": {"dir2": {"file1": "continut1", "file2": "continut2"}, "file3": "continut3"}, "file4": "continut4"}'
-# parse x:
-# json_file = json.loads(x)
-# root_dir = "C:\\Users\\Subaru\\Desktop\\PythonProject\\root"
-# json_to_something(json_file, root_dir)
-
 ############################################################################################################################
 # python create_structure.py "C:\Users\Subaru\Desktop\PythonProject\root" "C:\Users\Subaru\Desktop\PythonProject\json.json"
 ############################################################################################################################
-
-# TO DO:
-# - json files could have a longer than 1 line json... check in file... or read the whole file in one take
-# - the file/directory tree print
